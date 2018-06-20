@@ -17,6 +17,7 @@
 	<?php
 		include_once 'includes/header.php';
 		include_once 'includes/galery.php';
+		include_once 'includes/snap.php';
 		if (empty($_GET))
 			printGalery();
 		else if (isset($_GET['disconnect']))
@@ -24,6 +25,12 @@
 			session_destroy();
 			header('Location: /');
 		}
+		else if (isset($_GET['snap']))
+		{
+			printSnap($user, $db);
+		}
+		else
+			echo "404 NOT FOUND";
 	?>
 	<footer>
 		<div id="fnav">

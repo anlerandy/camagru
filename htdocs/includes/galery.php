@@ -17,7 +17,7 @@ function printGalery() {
 		<div class="comContainer">
 			<div class="comment">
 				<div class="comAuthor">
-					<img src="images/01.jpg"></img>
+					<img src="img/default.gif"></img>
 					<h4>ComAuthor</h4>
 				</div>
 				<p>

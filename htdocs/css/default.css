@@ -120,12 +120,8 @@ a:hover {
 }
 
 #log form {
-	display:flex;
 	padding: 0;
 	margin :0;
-	flex-wrap:wrap;
-	opacity:0;
-	display:none;
 	transition: all 1s;
 }
 

@@ -1,11 +1,19 @@
 <?php
 	require_once __DIR__.'/../class/user.class.php';
 	session_start();
+	$user = NULL;
+	$u_err = 0;
 	$link = $_SERVER['REQUEST_URI'];
-	if (isset($_POST['login']) && isset($_POST['passwd']) && !empty($_POST['passwd']) && !empty($_POST['login']))
+	if (isset($_SESSION['login']))
 	{
 		$user = new User();
-		$user->logIn($_POST['login'], $_POST['passwd']);
+		$user->setUser();
+	}
+	else if (isset($_POST['login']) && isset($_POST['passwd']) && !empty($_POST['passwd']) && !empty($_POST['login']))
+	{
+		$user = new User();
+		$u_err = $user->logIn($_POST['login'], $_POST['passwd']);
+		$u_err === -1 ? $user = -1 : 0;
 	}
 ?>
 	<script>
@@ -46,14 +54,19 @@
 			}
 		}
 	</script>
-	<div id="signup" style="opacity: 0; display: none;">
+	<div id="signup" 
+	<?php
+	if ((!isset($_POST['submit']) || $_POST['submit'] !== 'signup') && $u_err < 1)
+		echo 'style="opacity: 0; display: none;'
+	?>
+	">
 	<div class="bg" onclick="openSignup()"></div>
 	<form method="POST" action="<?=$link?>" >
 		<h1>SignUp</h1>
 		Username : <input type="text" id="bform.signup" name="login" placeholder="Your login" />
 		Password : <input type="password" name="passwd" placeholder="Your password" />
 		E-Mail : <input type="text" name="mail" placeholder="Your mail adress" />
-		<button>SignUp</button>
+		<button name="submit" value="signup">SignUp</button>
 	</form>
 	</div>
 	<header>
@@ -71,10 +84,19 @@
 			<?php
 				if (!isset($_SESSION['login']))
 				{
-					echo '<form method="POST" style="opacity: 0; display: none;" action="'.$link.'" id="form.login" >
-					<input type="text" name="login" placeholder="Your login" />
-					<input type="password" name="passwd" placeholder="Your password" />
-					<button>LogIn</button>
+					echo '<form method="POST" ';
+					if ((!isset($_POST['submit']) || $_POST['submit'] !== 'login') && $u_err < 1)
+						echo 'style="opacity: 0; display: none;" ';
+					echo 'action="'.$link.'" id="form.login" >
+					<input type="text" name="login" placeholder="Your login"';
+					if ($u_err === -1)
+						echo 'style="background:crimson;color:white" ';
+					echo '/>
+					<input type="password" name="passwd" placeholder="Your password"';
+					if ($u_err === -1)
+						echo 'style="background:crimson;color:white" ';
+					echo '/>
+					<button name="submit" value="login">LogIn</button>
 					</form>
 					<a onclick="openLogin()">LogIn</a>
 					<a onclick="openSignup()">SignUp</a>';

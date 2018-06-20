@@ -16,6 +16,12 @@ class User
 		$_SESSION['login'] = $this->data['login'];
 	}
 
+	public function setUser()
+	{
+		$this->data = $_SESSION['user_data'];
+		$this->set();
+	}
+
 	public function set()
 	{
 		$this->id = $this->data['id'];
@@ -34,10 +40,15 @@ class User
 			if ($stmt->execute(array(':u_login' => $u_login, ':u_passwd' => $u_passwd)))
 			{
 				$data = $stmt->fetchAll();
-				$this->data = $data[0];
-				$this->set();
-				$this->export();
+				if (isset($data[0]))
+				{
+					$this->data = $data[0];
+					$this->set();
+					$this->export();
+					return (1);
+				}
 			}
+			return (-1);
 		}
 		catch (PDOException $e)
 		{
