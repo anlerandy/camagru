@@ -10,7 +10,7 @@ function printSnap($user, $db)
 	if (!isset($user) || $user === -1)
 	{
 		echo '
-	<div id="signup" >
+	<div class="logon" style="z-index:1;">
 	<form method="POST" action="'.$link.'" >
 		<h1>Connection</h1>
 		<p>You need to be connected to access this page.</p>
@@ -25,6 +25,14 @@ function printSnap($user, $db)
 		<button name="submit" value="login">LogIn</button>
 	</form>
 	</div>';
+	}
+	else
+	{
+		echo '
+		<div id="snapContainer" >
+			<div class="webcam">
+			</div>
+		</div>';
 	}
 }
 ?>

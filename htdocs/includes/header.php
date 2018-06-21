@@ -56,7 +56,7 @@
 	</script>
 	<div id="signup" 
 	<?php
-	if ((!isset($_POST['submit']) || $_POST['submit'] !== 'signup') && $u_err < 1)
+	if ((!isset($_POST['submit']) || $_POST['submit'] !== 'signup'))
 		echo 'style="opacity: 0; display: none;'
 	?>
 	">

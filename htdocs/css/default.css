@@ -4,15 +4,16 @@
 	}
 
 html {
+	min-width:400px;
 	width:100%;
-	height:100%;
+	height:100vh;
 	font: 100 18px sans-serif;
 }
 
 body {
 	margin:auto;
 	padding:0;
-	width:80vw;
+	width:80%;
 	height:100%;
 }
 
@@ -58,6 +59,7 @@ a:hover {
 	box-shadow : 0 0 10px black;
 	border-radius:25px;
 	height: 45vh;
+	min-height: 400px;
 	display: flex;
 	flex-wrap:wrap;
 	overflow:hidden
@@ -125,13 +127,16 @@ a:hover {
 	transition: all 1s;
 }
 
+input {border-radius : 10px; border : solid 1px lightgrey;padding:2px;}
+
 #signup {
 	left:0;
-	z-index:1;
-} #signup .bg {z-index:1;left:0; position:absolute; background:rgba(0, 0, 0, 0.4); width:100%; height:100%;}
+	z-index:2;
+} #signup .bg {z-index:2;left:0; position:absolute; background:rgba(0, 0, 0, 0.4); width:100%; height:100%;}
 
 #signup form {
-	z-index:2;
+	min-width:300px;
+	z-index:5;
 	width : 25%;
 	padding: 30px;
 	padding-top:0px;
@@ -144,14 +149,42 @@ a:hover {
 	background:white;
 	border-radius : 25px;
 	box-shadow: 2px 2px 3px black;
-} #signup form input {margin:10px;}
+} #signup form input, .logon input {margin:10px;}
 
-@media screen AND (max-width:800px)
+.logon form{
+	min-width:300px;
+	z-index:1;
+	margin-top:15%;
+	margin-left:50%;
+	width : 55%;
+	padding: 30px;
+	padding-top:0px;
+	transform: translate(-50%, 0%);
+	display:flex;
+	flex-direction :column;
+	background:white;
+	border-radius : 25px;
+	box-shadow: 2px 2px 3px black;
+}
+
+#snapContainer {
+	margin-top:15%;
+	width:100%;
+	height: 20%
+}
+
+.webcam {
+	width:45%;
+	height:100%;
+	background:red;
+}
+
+@media screen AND (max-width:800px) , (orientation:portrait)
 {
 	body {width:90%;}
 	#imgContainer {width:100%;border-radius:25px;height:50%;}
 	#sidebar {width:100%;height:40%;}
 	.author {}
 	.author img {width:55px; height:55px;}
-	#templateContainer {height:70vh;}
+	#templateContainer {height:70vh;min-height:800px}
 }

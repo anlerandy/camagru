@@ -32,7 +32,7 @@ function db_conn()
 				echo 'Error 03: ' . $e->getMessage();
 				exit (0);
 			}
-				$default = $_SERVER['DOCUMENT_ROOT'] . '/img/default.gif';
+				$default = '/img/default.gif';
 				if (!($db->exec("CREATE DATABASE `$r_db`")))
 					return (0);
 				else
