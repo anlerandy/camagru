@@ -54,18 +54,23 @@
 			}
 		}
 	</script>
-	<div id="signup" 
+	<div id="signup"
 	<?php
-	if ((!isset($_POST['submit']) || $_POST['submit'] !== 'signup'))
+	if ((!isset($_POST['submit']) || $_POST['submit'] !== 'signup') && (!isset($_POST['signin'])))
 		echo 'style="opacity: 0; display: none;'
 	?>
 	">
 	<div class="bg" onclick="openSignup()"></div>
-	<form method="POST" action="<?=$link?>" >
+	<form enctype="multipart/form-data" method="POST" action="/includes/signup.php" >
 		<h1>SignUp</h1>
-		Username : <input type="text" id="bform.signup" name="login" placeholder="Your login" />
-		Password : <input type="password" name="passwd" placeholder="Your password" />
-		E-Mail : <input type="text" name="mail" placeholder="Your mail adress" />
+<?php 
+		if(isset($_POST['signin']))
+			echo '<p style="color:red">' . $_POST['signin'] . ' existe déjà.</p>';
+		?>
+		Username : <input type="text" id="bform.signup" name="login" placeholder="Your login" required />
+		Password : <input type="password" name="passwd" placeholder="Your password" required />
+		E-Mail : <input type="text" name="mail" placeholder="Your mail adress" required />
+		Avatar : <input type="file" name="img" />
 		<button name="submit" value="signup">SignUp</button>
 	</form>
 	</div>

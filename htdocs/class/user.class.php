@@ -57,13 +57,57 @@ class User
 		}
 	}
 
-	public function newUser($u_login, $u_passwd, $u_mail)
+	public function exist($u_login, $u_mail)
+	{
+		try {
+		if (!($db = db_conn()))
+			header('Location: /');
+		$stmt = $db->prepare("SELECT COUNT('login') FROM `users` WHERE `login` = :u_login");
+		$stmt->execute(array(':u_login' => $u_login));
+		if ($stmt->fetchColumn() == 1)
+			return (1);
+		$stmt = $db->prepare("SELECT COUNT('login') FROM `users` WHERE `mail` = :u_mail");
+		$stmt->execute(array(':u_mail' => $u_mail));
+		if ($stmt->fetchColumn() == 1)
+			return (2);
+		return (0);
+		} catch (PDOException $e)
+		{
+			echo 'Error 06: ' . $e->getMessage();
+		}
+	}
+
+	public function updateImg($u_img, $u_login)
+	{
+		if (!($db = db_conn()))
+			header('Location: /');
+		try {
+			$stmt = $db->prepare("UPDATE users SET image = :u_img WHERE login = :u_login");
+			$stmt->execute(array(':u_img' => $u_img, ':u_login' => $u_login));
+		} catch (PDOException $e) {
+			echo 'Error 07: ' . $e->getMessage();
+		}
+	}
+
+	public function newUser($u_login, $u_passwd, $u_mail, $u_img)
 	{
 		$u_passwd = hash('whirlpool', $u_passwd);
 		if (!($db = db_conn()))
 			header('Location: /');
-		if (!($db->exec("INSERT INTO `users` ('login', 'pass', 'mail') VALUES (`$u_login`, `$u_passwd`, `$u_mail`);")))
-			header('Location: /');
+		try {
+			$stmt = $db->prepare("INSERT INTO users (login, pass, mail) VALUES (:u_login, :u_passwd, :u_mail)");
+			$stmt->execute(array(':u_login' => $u_login, ':u_passwd' => $u_passwd, ':u_mail' => $u_mail));
+			if (isset($u_img))
+			{
+				$this->updateImg($u_img, $u_login);
+			}
+			return (1);
+		}
+		catch (PDOException $e)
+		{
+			echo 'Error 05: ' . $e->getMessage();
+		}
+		return (0);
 	}
 }
 

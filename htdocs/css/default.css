@@ -4,13 +4,13 @@
 	}
 
 html {
-	min-width:400px;
 	width:100%;
-	height:100vh;
+	height:100%;
 	font: 100 18px sans-serif;
 }
 
 body {
+	min-width:350px;
 	margin:auto;
 	padding:0;
 	width:80%;
@@ -181,7 +181,7 @@ input {border-radius : 10px; border : solid 1px lightgrey;padding:2px;}
 
 @media screen AND (max-width:800px) , (orientation:portrait)
 {
-	body {width:90%;}
+	body {width:95%;padding:0;margin:auto;}
 	#imgContainer {width:100%;border-radius:25px;height:50%;}
 	#sidebar {width:100%;height:40%;}
 	.author {}

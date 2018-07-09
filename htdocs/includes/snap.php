@@ -23,6 +23,11 @@ function printSnap($user, $db)
 			echo 'style="background:crimson;color:white" ';
 		echo '/>
 		<button name="submit" value="login">LogIn</button>
+		<center>
+		<br />
+		<p>Or</p>
+		<a style="padding:10px;border-radius:5px" onclick="openSignup()">SignUp</a>
+		</center>
 	</form>
 	</div>';
 	}
