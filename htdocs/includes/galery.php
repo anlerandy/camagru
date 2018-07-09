@@ -1,16 +1,26 @@
 <?php
+	require_once __DIR__.'/../class/galery.class.php';
 function printGalery() {
-	echo '<h1>Galery</h1>
+	$gal = new Galery();
+
+	$display = $gal->newGal();
+	echo	'<h1>Galery</h1>
+			 <div style="margin-bottom:54px;">';
+	foreach ($display as $view)
+	{
+		echo '
 <div id="templateContainer">
 	<div id="imgContainer">
-		<img src="images/02.jpg" />
+		<img src="' . $view['path'] . '" />
 	</div>
 	<div id="sidebar">
 		<div class="author">
-			<img src="images/01.jpg" />
-			<h3>Author</h3>
+			<div style="display:flex;align-items:center;justify-content:center;">
+				<img src="' . $view['image'] . '" />
+				<h3>' . $view['login'] . '</h3>
+			</div>
 			<p>
-				Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression.
+				' . $view['desc'] . '
 			</p>
 		</div>
 		<h3>Comments</h3>
@@ -27,5 +37,7 @@ function printGalery() {
 		</div>
 	</div>
 </div>';
+	}
+echo '</div>';
 }
 ?>

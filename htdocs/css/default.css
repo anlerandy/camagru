@@ -47,8 +47,9 @@ nav {
 	margin:0;
 } nav div a, nav div {padding:10px;color:white;font: 400 18px sans-serif;text-decoration:none;}
 
-a:hover {
+a:hover, button:hover{
 	background:tan;
+	cursor:pointer;
 }
 
 #templateContainer {
@@ -80,9 +81,8 @@ a:hover {
 .author {
 	height: 40%;
 	display:flex;
-	flex-wrap:wrap;
+	flex-direction:column;
 	justify-content:center;
-	align-items:center;
 	margin-bottom:30px;
 }	.author img {width:75px; height:75px;border-radius:50%;object-fit: cover;box-shadow:3px 3px 2px black;margin-bottom:10px;margin-right:10px;}
 	.author p {height: 40%;overflow:hidden;} .author p:hover {overflow:auto;}
@@ -128,6 +128,7 @@ a:hover {
 }
 
 input {border-radius : 10px; border : solid 1px lightgrey;padding:2px;}
+input:focus {background:beige;outline:none}
 
 #signup {
 	left:0;

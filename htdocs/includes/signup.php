@@ -20,24 +20,41 @@
 	}
 	if (isset($_POST) && !empty($_POST))
 	{
-		if (($err_sign = $user->exist($_POST['login'], $_POST['mail'])))
+		if (htmlentities($_POST['login']) == $_POST['login'])
 		{
-			if ($err_sign === 1)
-				$err_sign = 'Cet utilisateur';
-			if ($err_sign === 2)
-				$err_sign = 'Cette adresse mail';
-			echo '<html>
-				<body onload="document.frm1.submit()">
-				<form method="POST" action="'.$_SERVER['HTTP_REFERER'].'" name="frm1">
-				<input type="hidden" name="signin" value="' . $err_sign . '" />
-				</form>
-				</body>
-				</html>';
-			exit ;
+			if (($err_sign = $user->exist($_POST['login'], $_POST['mail'])))
+			{
+				if ($err_sign === 1)
+					$err_sign = 'Cet utilisateur existe déjà.';
+				if ($err_sign === 2)
+					$err_sign = 'Cette adresse mail existe déjà.';
+				echo '<html>
+					<body onload="document.frm1.submit()">
+					<form method="POST" action="'.$_SERVER['HTTP_REFERER'].'" name="frm1">
+					<input type="hidden" name="signin" value="' . $err_sign . '" />
+					</form>
+					</body>
+					</html>';
+				exit ;
+			}
+			else
+			{
+				if ($user->newUser($_POST['login'], $_POST['passwd'], $_POST['mail'], $path))
+					$user->LogIn($_POST['login'], $_POST['passwd']);
+			}
 		}
 		else
-			if ($user->newUser($_POST['login'], $_POST['passwd'], $_POST['mail'], $path))
-				$user->LogIn($_POST['login'], $_POST['passwd']);
+		{
+			$err_sign = 'Les signes < > sont interdits.';
+				echo '<html>
+					<body onload="document.frm1.submit()">
+					<form method="POST" action="'.$_SERVER['HTTP_REFERER'].'" name="frm1">
+					<input type="hidden" name="signin" value="' . htmlentities($err_sign) . '" />
+					</form>
+					</body>
+					</html>';
+			exit;
+		}
 	}
 	$link = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '/';
 	header('location: ' . $link);

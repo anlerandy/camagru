@@ -65,7 +65,7 @@
 		<h1>SignUp</h1>
 <?php 
 		if(isset($_POST['signin']))
-			echo '<p style="color:red">' . $_POST['signin'] . ' existe déjà.</p>';
+			echo '<p style="color:red">' . $_POST['signin'] . '</p>';
 		?>
 		Username : <input type="text" id="bform.signup" name="login" placeholder="Your login" required />
 		Password : <input type="password" name="passwd" placeholder="Your password" required />
