@@ -42,7 +42,8 @@ function db_conn()
 					$db->exec("INSERT INTO `$r_db`.`images` (`user_id`, `state`, `path`, `desc`) VALUES ('1', 3, '/images/02.jpg', 'Exemple de description'), ('1', 3, '/images/01.jpg', 'Description de la deuxième image témoin.')");
 					$u_passwd = hash('whirlpool', $r_passwd);
 					$db->exec("INSERT INTO `$r_db`.`users`(`login`, `pass`, `level`, `mail`) VALUES ('admin','$u_passwd',3,'admin@admin.fr')");
-					$db->exec("CREATE TABLE `$r_db`.`comms` ( `id` INT NOT NULL AUTO_INCREMENT , `user_id` INT NOT NULL, `img_id` INT NOT NULL , `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP, PRIMARY KEY (`id`), UNIQUE (`id`)) ENGINE = InnoDB;");
+					$db->exec("CREATE TABLE `$r_db`.`comms` ( `id` INT NOT NULL AUTO_INCREMENT , `user_id` INT NOT NULL, `img_id` INT NOT NULL , `text` LONGTEXT NOT NULL , `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP, PRIMARY KEY (`id`), UNIQUE (`id`)) ENGINE = InnoDB;");
+					$db->exec("INSERT INTO `$r_db`.`comms` (`id`, `user_id`, `img_id`, `text`, `date`) VALUES ('1', '1', '1', 'Voici un bon exemple de commentaire !', CURRENT_TIMESTAMP), ('2', '1', '1', 'Et un deuxième pour la route !', CURRENT_TIMESTAMP)");
 				}
 		}
 		return ($db);

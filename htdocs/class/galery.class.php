@@ -11,7 +11,7 @@ class Galery
 	public $level;
 	public $state;
 	public $current;
-	public $img_info;
+	public $i_coms;
 
 	public function export()
 	{
@@ -33,17 +33,33 @@ class Galery
 		}
 		catch (PDOException $e)
 		{
-			echo 'Error 05: ' . $e->getMessage();
+			echo 'Error 08: ' . $e->getMessage();
+		}
+		return (0);
+	}
+
+	public function getComs($i_id)
+	{
+		if (!($db = db_conn()))
+			header('Location: /');
+		try {
+			$stmt = $db->prepare("SELECT * FROM comms INNER JOIN users ON comms.user_id = users.id WHERE comms.img_id = :i_id");
+			$stmt->execute(array(':i_id' => $i_id));
+			$data = $stmt->fetchAll();
+			if (isset($data))
+			{
+				$this->i_coms = $data;
+			}
+			return ($this->i_coms);
+		}
+		catch (PDOException $e)
+		{
+			echo 'Error 09: ' . $e->getMessage();
 		}
 		return (0);
 	}
 
 	public function newUserGal($user_id)
 	{
-	}
-
-	public function getInfo($g_img)
-	{
-		
 	}
 }
