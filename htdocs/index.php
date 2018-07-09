@@ -17,9 +17,10 @@
 	<?php
 		include_once 'includes/header.php';
 		include_once 'includes/galery.php';
+		include_once 'includes/users.php';
 		include_once 'includes/snap.php';
 		if (empty($_GET))
-			printGalery();
+			printGalery(0);
 		else if (isset($_GET['disconnect']))
 		{
 			session_destroy();
@@ -28,6 +29,13 @@
 		else if (isset($_GET['snap']))
 		{
 			printSnap($user, $db);
+		}
+		else if (isset($_GET['users']))
+		{
+			if (!empty($_GET['users']))
+				printGalery($_GET['users']);
+			else
+				printUsers();
 		}
 		else
 			echo "404 NOT FOUND";

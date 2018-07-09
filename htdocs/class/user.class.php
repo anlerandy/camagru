@@ -109,6 +109,29 @@ class User
 		}
 		return (0);
 	}
+
+	public function getAll()
+	{
+		if (!($db = db_conn()))
+			header('Location: /');
+		try {
+			$stmt = $db->prepare("SELECT id, login, image FROM `users`");
+			if ($stmt->execute())
+			{
+				$data = $stmt->fetchAll();
+				if (isset($data))
+				{
+					return ($data);
+				}
+			}
+			return (0);
+		}
+		catch (PDOException $e)
+		{
+			echo 'Error 10:' . $e->getMessage();
+			exit (0);
+		}
+	}
 }
 
 ?>

@@ -1,11 +1,16 @@
 <?php
 	require_once __DIR__.'/../class/galery.class.php';
-function printGalery() {
+function printGalery($id) {
 	$gal = new Galery();
 
-	$display = $gal->newGal();
-	echo	'<h1>Galery</h1>
-			 <div style="margin-bottom:54px;">';
+	$display = !$id ? $gal->newGal() : $gal->newUserGal($id);
+	if (!empty($display))
+	{
+		if ($id)
+			echo '<h1>' . $display[0]['login'] . '\'s galery</h1>';
+		else
+			echo '<h1>Galery</h1>';
+		echo '<div style="margin-bottom:54px;">';
 	foreach ($display as $view)
 	{
 		echo '
@@ -45,6 +50,9 @@ function printGalery() {
 	</div>
 </div>';
 	}
-echo '</div>';
+	echo '</div>';
+	}
+	else
+		echo "404 NOT FOUND";
 }
 ?>

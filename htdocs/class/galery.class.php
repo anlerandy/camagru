@@ -61,5 +61,22 @@ class Galery
 
 	public function newUserGal($user_id)
 	{
+		if (!($db = db_conn()))
+			header('Location: /');
+		try {
+			$stmt = $db->prepare("SELECT * FROM images INNER JOIN users ON images.user_id = users.id WHERE images.user_id = :user_id");
+			$stmt->execute(array(':user_id' => $user_id));
+			$data = $stmt->fetchAll();
+			if (isset($data))
+			{
+				$this->current = $data;
+			}
+			return ($this->current);
+		}
+		catch (PDOException $e)
+		{
+			echo 'Error 08: ' . $e->getMessage();
+		}
+		return (0);
 	}
 }

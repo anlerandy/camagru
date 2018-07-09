@@ -45,6 +45,11 @@ function db_conn()
 					$db->exec("CREATE TABLE `$r_db`.`comms` ( `id` INT NOT NULL AUTO_INCREMENT , `user_id` INT NOT NULL, `img_id` INT NOT NULL , `text` LONGTEXT NOT NULL , `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP, PRIMARY KEY (`id`), UNIQUE (`id`)) ENGINE = InnoDB;");
 					$db->exec("INSERT INTO `$r_db`.`comms` (`id`, `user_id`, `img_id`, `text`, `date`) VALUES ('1', '1', '1', 'Voici un bon exemple de commentaire !', CURRENT_TIMESTAMP), ('2', '1', '1', 'Et un deuxième pour la route !', CURRENT_TIMESTAMP)");
 				}
+			if (isset($_SESSION))
+			{
+				session_destroy();
+				unset($_SESSION);
+			}
 		}
 		return ($db);
 	}
