@@ -33,5 +33,6 @@
 		echo 'You are not connected. Error 850';
 		if (isset($_SESSION) && isset($_SESSION['user_data']))
 			session_destroy();
+		header("Refresh:2; url=/?snap");
 	}
 ?>

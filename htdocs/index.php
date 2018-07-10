@@ -9,6 +9,8 @@
 	include_once 'database/libdb.php';
 	if (!($db = db_conn()))
 	{
+		if (isset($_SESSION))
+			header('location: /?disconnect');
 		include_once 'database/connect.php';
 		exit ;
 	}
