@@ -3,7 +3,7 @@
 function printUsers() {
 	$userInst = new User();
 	$allUser = $userInst->getAll();
-	echo '<div style="display:flex;flex-wrap:wrap;margin-top:42px;margin-bottom:42px;">';
+	echo '<div id="users">';
 	foreach ($allUser as $uId)
 	{
 		if (!file_exists(__DIR__ . '/../' . $uId['image']))
@@ -11,15 +11,11 @@ function printUsers() {
 			$uId['image'] = '/img/default.gif';
 		}
 		echo '
-			<div style="width:250px;margin:12px;">
-			<form method="GET" action=' . $_SERVER['HTTP_REFERER'] . '>
-			<input style="max-width:250px;" src="' . $uId['image'] . '" type="image" name="users" value="' . $uId['login'] . '" />
-			<center>
-			<p style="">' . $uId['login'] . '</p>
-			</center>
-			</input>
-			</form>
-			</div>';
+			<a style="border-radius:15px;margin:12px;background: url(\'' . $uId['image'] . '\') no-repeat; background-size:cover" href="/?users=' . $uId['login'] .'">
+			<div style="width:250px;height:250px;position:relative;"left:50%dding:0;>
+				<p style="background:RGBA(255,255,255,0.7);width:100%;position:absolute;bottom:-20px;border-radius:0 0 15px 15px;"><span class="blaze" style="left:50%">' . $uId['login'] . '</span></p>
+			</div>
+			</a>';
 	}
 	echo '</div>';
 }

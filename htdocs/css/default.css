@@ -199,6 +199,15 @@ canvas {width:100%;}
 	background-size : contain;
 }
 
+#users {
+	display:flex;
+	flex-wrap:wrap;
+	margin-top:42px;
+	margin-bottom:42px;
+	justify-content:center;
+	align-items:center;
+} .blaze { margin-left:50%; transform: translate(50px,50px); font-weight:700; color : black}
+
 textarea { width:80%; resize:vertical; outline:none; padding:10px;border-radius:15px;}
 
 @media screen AND (max-width:800px) , (orientation:portrait)
@@ -211,4 +220,5 @@ textarea { width:80%; resize:vertical; outline:none; padding:10px;border-radius:
 	#templateContainer {height:70vh; min-height:800px}
 	.webcam {width:100%;}
 	#set { width:100%; margin-top:15px; border-radius:15px; background:gray; };
+	#users {  }
 }

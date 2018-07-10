@@ -7,11 +7,11 @@ function snapLogIn($user, $link)
 	<form method="POST" action="'.$link.'" >
 		<h1>Connection</h1>
 		<p>You need to be connected to access this page.</p>
-		Username : <input type="text" id="bform.login" name="login" placeholder="Your login"';
+		Username : <input autocomplete="username" type="text" id="bform.login" name="login" placeholder="Your login"';
 	if ($user === -1)
 		echo 'style="background:crimson;color:white" ';
 	echo '/>
-		Password : <input type="password" name="passwd" placeholder="Your password"';
+		Password : <input autocomplete=\'current-password\'  type="password" name="passwd" placeholder="Your password"';
 	if ($user === -1)
 		echo 'style="background:crimson;color:white" ';
 	echo '/>

@@ -67,9 +67,9 @@
 		if(isset($_POST['signin']))
 			echo '<p style="color:red">' . $_POST['signin'] . '</p>';
 		?>
-		Username : <input type="text" id="bform.signup" name="login" placeholder="Your login" required />
-		Password : <input type="password" name="passwd" placeholder="Your password" required />
-		E-Mail : <input type="text" name="mail" placeholder="Your mail adress" required />
+		Username : <input autocomplete='username' type="text" id="bform.signup" name="login" placeholder="Your login" required />
+		Password : <input autocomplete='current-password' type="password" name="passwd" placeholder="Your password" required />
+		E-Mail : <input type="text" autocomplete='email' name="mail" placeholder="Your mail adress" required />
 		Avatar : <input type="file" name="img" />
 		<button name="submit" value="signup">SignUp</button>
 	</form>
@@ -93,11 +93,11 @@
 					if ((!isset($_POST['submit']) || $_POST['submit'] !== 'login') && $u_err < 1)
 						echo 'style="opacity: 0; display: none;" ';
 					echo 'action="'.$link.'" id="form.login" >
-					<input type="text" name="login" placeholder="Your login"';
+					<input autocomplete=\'username\' type="text" name="login" placeholder="Your login"';
 					if ($u_err === -1)
 						echo 'style="background:crimson;color:white" ';
 					echo '/>
-					<input type="password" name="passwd" placeholder="Your password"';
+					<input autocomplete=\'current-password\' type="password" name="passwd" placeholder="Your password"';
 					if ($u_err === -1)
 						echo 'style="background:crimson;color:white" ';
 					echo '/>
