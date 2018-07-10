@@ -41,12 +41,13 @@ function printSnap($user, $db)
 	{
 		echo '
 		<div id="snapContainer" >
-			<div class="webcam" style="width:50%;">
+			<div class="webcam">
 				<video autoplay="true" id="videoElement">
 				</video>
-					<center>
-						<button onclick="Shot()">Take a shot!</button>
-					</center>
+				<center>
+					<button onclick="shot()" id="shot">Take a shot!</button>
+					<button onclick="retry()" id="retry" style="display:none;">Another</button>
+				</center>
 			</div>
 		</div>
 	<script src="../libs/webcam.js" type="text/javascript"></script>';

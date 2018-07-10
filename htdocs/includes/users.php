@@ -6,6 +6,10 @@ function printUsers() {
 	echo '<div style="display:flex;flex-wrap:wrap;margin-top:42px;margin-bottom:42px;">';
 	foreach ($allUser as $uId)
 	{
+		if (!file_exists(__DIR__ . '/../' . $uId['image']))
+		{
+			$uId['image'] = '/img/default.gif';
+		}
 		echo '
 			<div style="width:250px;margin:12px;">
 			<form method="GET" action=' . $_SERVER['HTTP_REFERER'] . '>
