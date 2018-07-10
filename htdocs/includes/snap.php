@@ -40,7 +40,7 @@ function printSnap($user, $db)
 	else
 	{
 		echo '
-		<div id="snapContainer" >
+		<div id="snapContainer">
 			<div class="webcam">
 				<video autoplay="true" id="videoElement">
 				</video>
@@ -48,6 +48,22 @@ function printSnap($user, $db)
 					<button onclick="shot()" id="shot">Take a shot!</button>
 					<button onclick="retry()" id="retry" style="display:none;">Another</button>
 				</center>
+			</div>
+			<div id="set">
+				<div class="publish" style="display:none;">
+					<h1>Publish this one!</h1>
+					<form method="POST" action="/includes/newImage.php">
+						<input id="img" name="img" type="hidden" />
+						<center>
+						<textarea type="text" name="desc"></textarea>
+						<div>
+							<button type="submit">Publish</button>
+						</div>
+						</center>
+					<form>
+				</div>
+				<div class="filter">
+				</div>
 			</div>
 		</div>
 	<script src="../libs/webcam.js" type="text/javascript"></script>';

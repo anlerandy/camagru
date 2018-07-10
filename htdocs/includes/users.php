@@ -13,7 +13,7 @@ function printUsers() {
 		echo '
 			<div style="width:250px;margin:12px;">
 			<form method="GET" action=' . $_SERVER['HTTP_REFERER'] . '>
-			<input style="max-width:250px;" src="' . $uId['image'] . '" type="image" name="users" value="' . $uId['id'] . '" />
+			<input style="max-width:250px;" src="' . $uId['image'] . '" type="image" name="users" value="' . $uId['login'] . '" />
 			<center>
 			<p style="">' . $uId['login'] . '</p>
 			</center>

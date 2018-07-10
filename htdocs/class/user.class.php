@@ -4,7 +4,7 @@ require_once __DIR__.'/../database/libdb.php';
 
 class User
 {
-	public $id;
+	public $id = 0;
 	public $login;
 	public $mail;
 	public $level;

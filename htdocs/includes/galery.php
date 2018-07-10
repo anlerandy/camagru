@@ -1,7 +1,9 @@
 <?php
 	require_once __DIR__.'/../class/galery.class.php';
+	require_once __DIR__.'/../class/user.class.php';
 function printGalery($id) {
 	$gal = new Galery();
+	$user = new User();
 
 	$display = !$id ? $gal->newGal() : $gal->newUserGal($id);
 	if (!empty($display))
@@ -52,6 +54,8 @@ function printGalery($id) {
 	}
 	echo '</div>';
 	}
+	else if ($user->exist($id, 0))
+		echo '<h1>' . $id . '\'s galery is empty!</h1>';
 	else
 		echo "404 NOT FOUND";
 }

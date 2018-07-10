@@ -22,7 +22,7 @@ class Galery
 		if (!($db = db_conn()))
 			header('Location: /');
 		try {
-			$stmt = $db->prepare("SELECT * FROM images INNER JOIN users ON images.user_id = users.id");
+			$stmt = $db->prepare("SELECT * FROM images INNER JOIN users ON images.user_id = users.id ORDER BY images.id DESC");
 			$stmt->execute();
 			$data = $stmt->fetchAll();
 			if (isset($data))
@@ -59,13 +59,13 @@ class Galery
 		return (0);
 	}
 
-	public function newUserGal($user_id)
+	public function newUserGal($user_log)
 	{
 		if (!($db = db_conn()))
 			header('Location: /');
 		try {
-			$stmt = $db->prepare("SELECT * FROM images INNER JOIN users ON images.user_id = users.id WHERE images.user_id = :user_id");
-			$stmt->execute(array(':user_id' => $user_id));
+			$stmt = $db->prepare("SELECT * FROM images INNER JOIN users ON images.user_id = users.id WHERE login = :user_log ORDER BY images.id DESC");
+			$stmt->execute(array(':user_log' => $user_log));
 			$data = $stmt->fetchAll();
 			if (isset($data))
 			{
@@ -76,6 +76,43 @@ class Galery
 		catch (PDOException $e)
 		{
 			echo 'Error 08: ' . $e->getMessage();
+		}
+		return (0);
+	}
+
+	public function newImage($u_id, $i_desc, $i_path)
+	{
+		if (!($db = db_conn()))
+			header('Location: /');
+		try {
+			$stmt = $db->prepare("INSERT INTO `images` (`user_id`, `state`, `path`, `desc`) VALUES (:u_id, '3', :i_path, :i_desc)");
+			$stmt->execute(array(':u_id' => $u_id, ':i_path' => $i_path, ':i_desc' => $i_desc));
+		}
+		catch (PDOException $e)
+		{
+			echo 'Error 14: ' . $e->getMessage();
+		}
+	}
+
+	public function countImg($u_id)
+	{
+		if (!($db = db_conn()))
+			header('Location: /');
+		try {
+			$stmt = $db->prepare("SELECT * FROM images WHERE user_id = :u_id");
+			$stmt->execute(array(':u_id' => $u_id));
+			$data = $stmt->fetchAll();
+			if (isset($data) && !empty($data))
+			{
+				$off = count($data) - 1;
+				$off = $off < 0 ? 0 : $off;
+				$nbr = $data[$off]['id'];
+				return ($nbr);
+			}
+		}
+		catch (PDOException $e)
+		{
+			echo 'Error 15: ' . $e->getMessage();
 		}
 		return (0);
 	}
