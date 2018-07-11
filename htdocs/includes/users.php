@@ -11,9 +11,9 @@ function printUsers() {
 			$uId['image'] = '/img/default.gif';
 		}
 		echo '
-			<a style="border-radius:15px;margin:12px;background: url(\'' . $uId['image'] . '\') no-repeat; background-size:cover" href="/?users=' . $uId['login'] .'">
-			<div style="width:250px;height:250px;position:relative;"left:50%dding:0;>
-				<p style="background:RGBA(255,255,255,0.7);width:100%;position:absolute;bottom:-20px;border-radius:0 0 15px 15px;"><span class="blaze" style="left:50%">' . $uId['login'] . '</span></p>
+			<a style="border-radius:15px;margin:12px;background: url(\'' . $uId['image'] . '\') center center no-repeat; background-size:cover" href="/?users=' . $uId['login'] .'">
+			<div style="width:250px;height:250px;position:relative;padding:0;">
+				<p style="background:RGBA(255,255,255,0.7);width:100%;position:absolute;bottom:-20px;border-radius:0 0 15px 15px;"><span class="blaze" >' . $uId['login'] . '</span></p>
 			</div>
 			</a>';
 	}

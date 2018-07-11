@@ -5,7 +5,7 @@
 	<meta charset="utf-8" />
 </head>
 <?php
-	include_once 'database/libdb.php';
+	include_once __DIR__ . '/libdb.php';
 	if (db_conn())
 		;
 	else
