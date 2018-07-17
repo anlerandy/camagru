@@ -16,7 +16,7 @@ function printGalery($id) {
 	foreach ($display as $view)
 	{
 		echo '
-<div id="templateContainer">
+<div class="templateContainer" id="' . $view[0] . '">
 	<div id="imgContainer">
 		<img src="' . $view['path'] . '" />
 	</div>
@@ -35,7 +35,7 @@ function printGalery($id) {
 		{
 			echo '<div class="comForm" style="width:100%">
 				<form method="POST" action="/includes/newCom.php" style="display:flex;width:100%">
-				<textarea type="text" name="com" style="resize:none;width:100%"></textarea>
+				<textarea type="text" placeholder="Post a comment here..." name="com" style="resize:none;width:100%"></textarea>
 				<input type="hidden" name="img" value="' . $view['0'] . '" />
 				<button type="submit" style="margin:10px;border-radius:10px;">Send</button>
 				</form>

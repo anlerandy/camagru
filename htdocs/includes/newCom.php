@@ -16,7 +16,7 @@
 		if (isset($_POST['img']) && !empty($_POST['img']) && isset($_POST['com']) && !empty($_POST['com']))
 		{
 			$img->newCom($user->id, $_POST['img'], $_POST['com']);
-				header('location:' . $_SERVER['HTTP_REFERER']);
+				header('location:' . $_SERVER['HTTP_REFERER'] . '#'.$_POST['img']);
 		}
 	}
 	else

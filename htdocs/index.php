@@ -29,9 +29,7 @@
 			header('Location: /');
 		}
 		else if (isset($_GET['snap']))
-		{
 			printSnap($user, $db);
-		}
 		else if (isset($_GET['users']))
 		{
 			if (!empty($_GET['users']))
@@ -39,6 +37,8 @@
 			else
 				printUsers();
 		}
+		else if (isset($_GET['admin']))
+			include_once 'includes/admin/admin.php';
 		else
 			echo "404 NOT FOUND";
 	?>

@@ -52,7 +52,7 @@ a:hover, button:hover{
 	cursor:pointer;
 }
 
-#templateContainer {
+.templateContainer {
 	margin : auto;
 	margin-top:50px;
 	width: calc(90% - 40px);
@@ -187,7 +187,7 @@ canvas {width:100%;}
 
 #set {
 	width : 45%;
-	height : 30%;
+height : 30%;
 	min-height: 300px;
 	background:aqua;
 }
@@ -210,6 +210,23 @@ canvas {width:100%;}
 
 textarea { width:80%; resize:vertical; outline:none; padding:10px;border-radius:15px;}
 
+ /* BEGIN ADMIN CSS */
+
+#adminPanel
+{
+	width:80%;
+	background:gray;
+	border-radius:20px;
+	text-align:left;
+}
+
+.sidenav {
+	margin: 42px;
+}
+.sidenav ul li, .sidenav ul { list-style: none;list-style-position:inside; padding:0} .sidenav a, .sidenav li {  }
+
+ /* END OF ADMIN CSS */
+
 @media screen AND (max-width:800px) , (orientation:portrait)
 {
 	body {width:95%; padding:0; margin:auto;}
@@ -217,7 +234,7 @@ textarea { width:80%; resize:vertical; outline:none; padding:10px;border-radius:
 	#sidebar {width:100%; height:40%;}
 	.author {}
 	.author img {width:55px; height:55px;}
-	#templateContainer {height:70vh; min-height:800px}
+	.templateContainer {height:70vh; min-height:800px}
 	.webcam {width:100%;}
 	#set { width:100%; margin-top:15px; border-radius:15px; background:gray; };
 	#users {  }
