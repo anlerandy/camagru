@@ -59,6 +59,22 @@ class Galery
 		return (0);
 	}
 
+	public function newCom($u_id, $i_id, $com)
+	{
+		if (!($db = db_conn()))
+			header('Location: /');
+		try {
+			$stmt = $db->prepare("INSERT INTO `comms` (`user_id`, `img_id`, `text`) VALUES (:u_id, :i_id, :com)");
+			$stmt->execute(array('u_id' => $u_id, ':i_id' => $i_id, ':com' => $com));
+		}
+		catch (PDOException $e)
+		{
+			echo 'Error 16: ' . $e->getMessage();
+			exit();
+		}
+		return (0);
+	}
+
 	public function newUserGal($user_log)
 	{
 		if (!($db = db_conn()))

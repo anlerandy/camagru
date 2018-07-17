@@ -30,8 +30,18 @@ function printGalery($id) {
 				' . $view['desc'] . '
 			</p>
 		</div>
-		<h3>Comments</h3>
-		<div class="comContainer">';
+		<h3>Comments</h3>';
+		if (isset($_SESSION) && isset($_SESSION['user_data']))
+		{
+			echo '<div class="comForm" style="width:100%">
+				<form method="POST" action="/includes/newCom.php" style="display:flex;width:100%">
+				<textarea type="text" name="com" style="resize:none;width:100%"></textarea>
+				<input type="hidden" name="img" value="' . $view['0'] . '" />
+				<button type="submit" style="margin:10px;border-radius:10px;">Send</button>
+				</form>
+			</div>';
+		}
+		echo '<div class="comContainer">';
 		$coms = $gal->getComs($view['0']);
 		foreach ($coms as $com)
 		{
