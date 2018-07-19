@@ -218,14 +218,73 @@ textarea { width:80%; resize:vertical; outline:none; padding:10px;border-radius:
 	background:gray;
 	border-radius:20px;
 	text-align:left;
+	padding:15px;
 }
 
 .sidenav {
 	margin: 42px;
+	padding:15px;
+}	.sidenav a { padding:5px;padding:3px;}
+
+.aImg {
+	width:200px;
+	height:200px;
+	object-fit: cover;
+	border-radius:50%;
 }
-.sidenav ul li, .sidenav ul { list-style: none;list-style-position:inside; padding:0} .sidenav a, .sidenav li {  }
+
+#aUserContainer {
+	padding:15px;
+	width:50%;
+	margin:auto;
+} #aUserContainer h1 { margin-left: 42px;} #aUserContainer label {margin-right:15px;margin-bottom:15px;}
+
+.aUserprofil {
+	align-items:center;
+	display:flex;
+	margin-bottom:42px;
+}
+
+.aUserName {
+	border:none;
+	background:none;
+	outline:none;
+	font-size : 60px;
+	font-family:"Infinity";
+	font-weight:bold;
+} .aUserName {padding:0;width:100%;flex-basis:fit-content;}
+
+.aBtn {
+	display:flex;
+	justify-content:space-evenly;
+	margin:24px;
+}
+
+#delete {
+	left:0;
+	z-index:2;
+} #delete .bg {z-index:2;left:0; top:0;position:absolute; background:rgba(0, 0, 0, 0.4); width:100%; height:100%;}
+
+#delete form {
+	min-width:300px;
+	z-index:5;
+	width : 25%;
+	padding: 30px;
+	padding-top:0px;
+	top : 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	display:flex;
+	flex-direction :column;
+	position:absolute;
+	background:white;
+	border-radius : 25px;
+	box-shadow: 2px 2px 3px black;
+} #delete form input, .logon input {margin:10px;}
 
  /* END OF ADMIN CSS */
+
+a {text-decoration:none; color :inherit}
 
 @media screen AND (max-width:800px) , (orientation:portrait)
 {

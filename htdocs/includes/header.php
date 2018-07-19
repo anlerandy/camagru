@@ -110,7 +110,7 @@
 				{
 					echo	'<a href="#">'.$_SESSION['login'].'</a>';
 					if (isset($_SESSION['user_data']['level']) && $_SESSION['user_data']['level'] === '3')
-						echo '<a href="#">Administration</a>';
+						echo '<a href="/?admin">Administration</a>';
 					echo	'<a href="/?disconnect">LogOut</a>';
 				}
 			?>
