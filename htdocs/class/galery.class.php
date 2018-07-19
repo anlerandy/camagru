@@ -43,7 +43,7 @@ class Galery
 		if (!($db = db_conn()))
 			header('Location: /');
 		try {
-			$stmt = $db->prepare("SELECT * FROM comms INNER JOIN users ON comms.user_id = users.id WHERE comms.img_id = :i_id");
+			$stmt = $db->prepare("SELECT * FROM comms INNER JOIN users ON comms.user_id = users.id WHERE comms.img_id = :i_id ORDER BY comms.date DESC");
 			$stmt->execute(array(':i_id' => $i_id));
 			$data = $stmt->fetchAll();
 			if (isset($data))
