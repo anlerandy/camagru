@@ -69,4 +69,32 @@ function printGalery($id) {
 	else
 		echo "404 NOT FOUND";
 }
+
+function printOwnGalery($u_login) {
+	$gal = new Galery();
+	$user = new User();
+	$u_info = $user->getUserInfo($u_login);
+	$display = $gal->newUserGal($u_login);
+
+	if (!empty($display))
+	{
+?>
+		<div>
+			<h1>Your snaps</h1>
+			<?php foreach($display as $img) { ?>
+			<div class="oImg" style="background: url('<?=$img['path']?>')" >
+				<form action="/?profil" method="POST">
+					<button type="hidden" name="delete" value="<?= $img['id']?>" id="img<?= $img['id']?>" />
+					<label for="img<?$img['id']?>"><img src="https://cdn3.iconfinder.com/data/icons/simple-web-navigation/165/cross-512.png" /></label>
+				</form>
+			</div>
+			<?php } ?>
+		</div>
+<?php
+	}
+	else if ($user->exist($u_login, 0))
+		echo '<h1>You have no snaps yet.</h1>';
+	else
+		echo "404 NOT FOUND";
+}
 ?>

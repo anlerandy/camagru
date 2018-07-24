@@ -110,7 +110,7 @@ class Galery
 		}
 	}
 
-	public function countImg($u_id)
+	public function nextImg($u_id)
 	{
 		if (!($db = db_conn()))
 			header('Location: /');
@@ -124,6 +124,28 @@ class Galery
 				$off = $off < 0 ? 0 : $off;
 				$nbr = $data[$off]['id'];
 				return ($nbr);
+			}
+		}
+		catch (PDOException $e)
+		{
+			echo 'Error 15: ' . $e->getMessage();
+		}
+		return (0);
+	}
+
+	public function countImg($u_id)
+	{
+		if (!($db = db_conn()))
+			header('Location: /');
+		try {
+			$stmt = $db->prepare("SELECT * FROM images WHERE user_id = :u_id");
+			$stmt->execute(array(':u_id' => $u_id));
+			$data = $stmt->fetchAll();
+			if (isset($data) && !empty($data))
+			{
+				$off = count($data);
+				$off = $off < 0 ? 0 : $off;
+				return ($off);
 			}
 		}
 		catch (PDOException $e)

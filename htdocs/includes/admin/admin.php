@@ -93,6 +93,8 @@ function get_data($url) {
 		{
 			if (($u_info = $user->getUserInfo($_GET['login'])))
 			{
+				$gal = New Galery();
+				$snaps = $gal->countImg($u_info['id']);
 			//	print_r($u_info);
 ?>
 
@@ -113,9 +115,10 @@ function get_data($url) {
 		<div class="aUserprofil">
 			<input type="file" style="display:none;" name="img" id="upImg" />
 			<label for="upImg"><img src="<?=$u_info['image'] ?>" class="aImg"  /></label>
-			<h1><input type="text" name="login" class="aUserName" value="<?= $u_info['login'] ?>" /></h1>
-			<img width="50px" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Feedbin-Icon-home-edit.svg/2000px-Feedbin-Icon-home-edit.svg.png" />
+			<h1><input size="10" type="text" name="login" class="aUserName" id="aUserName" value="<?= $u_info['login'] ?>" /></h1>
+			<label for="aUserName"><img width="50px" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Feedbin-Icon-home-edit.svg/2000px-Feedbin-Icon-home-edit.svg.png" /></label>
 		</div>
+			<h3 style="font-weight:500;"><a style="padding:5px;"><?= $u_info['login']?> has <?= $snaps ?> snaps</a></h3>
 		<div class="aUserField">
 			<div style="display:flex;">
 				<fieldset <?php if ($u_info['id'] == 1) echo "disabled" ?> >

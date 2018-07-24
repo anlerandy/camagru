@@ -210,6 +210,22 @@ height : 30%;
 
 textarea { width:80%; resize:vertical; outline:none; padding:10px;border-radius:15px;}
 
+.Userprofil {
+	align-items:center;
+	display:flex;
+	flex-wrap:wrap;
+	margin-top:42px;
+	padding:15px;
+}
+
+.oImg {
+	width:250px;
+	height:250px;
+	background-position:cover;
+	background-repeat:no-repeat;
+}	.oImg label {visibility:hidden;} .oImg:hover label {visibility:visible;}
+	.oImg button {width:250px;height:250px;background:transparent;border:none} .oImg form {width:250px;height:250px;} .oImg img {width:150px;}
+
  /* BEGIN ADMIN CSS */
 
 #adminPanel
@@ -242,6 +258,7 @@ textarea { width:80%; resize:vertical; outline:none; padding:10px;border-radius:
 .aUserprofil {
 	align-items:center;
 	display:flex;
+	flex-wrap:wrap;
 	margin-bottom:42px;
 }
 
@@ -252,7 +269,7 @@ textarea { width:80%; resize:vertical; outline:none; padding:10px;border-radius:
 	font-size : 60px;
 	font-family:"Infinity";
 	font-weight:bold;
-} .aUserName {padding:0;width:100%;flex-basis:fit-content;}
+} .aUserName {padding:0;flex-basis:fit-content}
 
 .aBtn {
 	display:flex;

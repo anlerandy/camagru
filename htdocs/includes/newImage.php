@@ -15,7 +15,7 @@
 	{
 		if (isset($_POST['img']) && !empty($_POST['img']))
 		{
-			$nbr = $img->countImg($user->id) + 1;
+			$nbr = $img->nextImg($user->id) + 1;
 			$name = $nbr . hash('crc32b', $user->login);
 			$data = $_POST['img'];
 			list($type, $data) = explode(';', $data);

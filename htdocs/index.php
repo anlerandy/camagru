@@ -39,6 +39,8 @@
 		}
 		else if (isset($_GET['admin']))
 			include_once 'includes/admin/admin.php';
+		else if (isset($_GET['profil']))
+			printOwnUser($_SESSION['login'], $_SESSION['user_data']['id']);
 		else
 			echo "404 NOT FOUND";
 	?>
