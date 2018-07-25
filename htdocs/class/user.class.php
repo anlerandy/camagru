@@ -112,6 +112,20 @@ class User
 		}
 	}
 
+	public function updatePass($u_pass, $u_login)
+	{
+		$u_pass = hash('whirlpool', $u_pass);
+		if (!($db = db_conn()))
+			header('Location: /');
+		try {
+			$stmt = $db->prepare("UPDATE users SET pass = :u_pass WHERE login = :u_login");
+			$stmt->execute(array(':u_pass' => $u_pass, ':u_login' => $u_login));
+		} catch (PDOException $e) {
+			echo 'Error 25: ' . $e->getMessage();
+			exit(0);
+		}
+	}
+
 	public function newUser($u_login, $u_passwd, $u_mail, $u_img)
 	{
 		$u_passwd = hash('whirlpool', $u_passwd);

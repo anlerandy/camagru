@@ -72,6 +72,12 @@ function get_data($url) {
 			$user->delUser($_POST['delete'], $delUser['id']);
 			header('location: /?admin=users');
 		}
+		if (isset($_POST['iDelete']))
+		{
+			$gal = New Galery();
+			$gal->deleteImg($_POST['iDelete']);
+			header('location: /?admin=photos');
+		}
 	}
 	if ($user)
 	{
@@ -83,7 +89,7 @@ function get_data($url) {
 	<div class="sidenav">
 		<a href='?admin'>Logs</a>
 		<a href='?admin=users'>Users</a>
-		<a>Photos</a>
+		<a href='?admin=photos'>Photos</a>
 		<hr/>
 	</div>
 <?php
@@ -170,6 +176,8 @@ function get_data($url) {
 		else
 			printAdmUsers();
 	}
+	else if ($_GET['admin'] == 'photos')
+		printAllOwnGalery();
 	else
 	{
 		echo "<h1> Log </h1>";

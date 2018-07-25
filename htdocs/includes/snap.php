@@ -40,6 +40,7 @@ function printSnap($user, $db)
 	else
 	{
 		echo '
+		<h1>SnapThat</h1>
 		<div id="snapContainer">
 			<div class="webcam">
 				<video autoplay="true" id="videoElement">

@@ -154,4 +154,21 @@ class Galery
 		}
 		return (0);
 	}
+
+	public function deleteImg($i_id)
+	{
+		if (!($db = db_conn()))
+			header('Location: /');
+		try {
+			$stmt = $db->prepare("DELETE FROM comms WHERE img_id = :i_id");
+			$stmt->execute(array(':i_id' => $i_id));
+			$stmt = $db->prepare("DELETE FROM images WHERE id = :i_id");
+			$stmt->execute(array(':i_id' => $i_id));
+		}
+		catch (PDOException $e)
+		{
+			echo 'Error 22: ' . $e->getMessage();
+			exit();
+		}
+	}
 }

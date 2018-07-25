@@ -12,7 +12,7 @@ function printGalery($id) {
 			echo '<h1>' . $display[0]['login'] . '\'s galery</h1>';
 		else
 			echo '<h1>Galery</h1>';
-		echo '<div style="margin-bottom:54px;">';
+		echo '<div style=";">';
 	foreach ($display as $view)
 	{
 		echo '
@@ -81,14 +81,16 @@ function printOwnGalery($u_login) {
 ?>
 		<div>
 			<h1>Your snaps</h1>
-			<?php foreach($display as $img) { ?>
-			<div class="oImg" style="background: url('<?=$img['path']?>')" >
-				<form action="/?profil" method="POST">
-					<button type="hidden" name="delete" value="<?= $img['id']?>" id="img<?= $img['id']?>" />
-					<label for="img<?$img['id']?>"><img src="https://cdn3.iconfinder.com/data/icons/simple-web-navigation/165/cross-512.png" /></label>
-				</form>
-			</div>
+			<div id="oImgContainer">
+				<?php foreach($display as $img) { ?>
+				<div class="oImg" style="background: url('<?=$img['path']?>');background-size:cover" >
+					<form action="/?profil" method="POST">
+						<button type="hidden" name="delete" value="<?= $img['0']?>" id="img<?= $img['0']?>" />
+						<label for="img<?=$img['0']?>"><img src="https://cdn3.iconfinder.com/data/icons/simple-web-navigation/165/cross-512.png" /></label>
+					</form>
+				</div>
 			<?php } ?>
+			</div>
 		</div>
 <?php
 	}
@@ -96,5 +98,36 @@ function printOwnGalery($u_login) {
 		echo '<h1>You have no snaps yet.</h1>';
 	else
 		echo "404 NOT FOUND";
+}
+
+function printAllOwnGalery() {
+	$gal = new Galery();
+	$user = new User();
+	$u_all = $user->getAll();
+
+?>
+	<h1>All snaps</h1>
+	<div id="oImgContainer">
+<?php
+	foreach($u_all as $u_info)
+	{
+		$display = $gal->newUserGal($u_info['login']);
+		if (!empty($display))
+		{
+?>
+				<?php foreach($display as $img) { ?>
+				<div class="oImg" style="background: url('<?=$img['path']?>');background-size:cover" >
+					<form action="/?admin=photos" method="POST">
+						<button type="hidden" name="iDelete" value="<?= $img['0']?>" id="img<?= $img['0']?>" />
+						<label for="img<?=$img['0']?>"><img src="https://cdn3.iconfinder.com/data/icons/simple-web-navigation/165/cross-512.png" /></label>
+					</form>
+				</div>
+			<?php } ?>
+<?php
+		}
+	}
+?>
+	</div>
+<?php
 }
 ?>

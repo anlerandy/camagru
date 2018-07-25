@@ -15,12 +15,15 @@ body {
 	padding:0;
 	width:80%;
 	height:100%;
+	background:url('../img/header.jpg') center center no-repeat;
+	background-attachment:fixed;
+	background-size:cover;
+	display:flex;
+	flex-direction:column;
 }
 
 header {
 	position:relative;
-	background:url('/img/header.jpg') center center;
-	background-size:cover;
 }
 
 #title {
@@ -29,16 +32,18 @@ header {
 	flex-wrap:wrap-reverse;
 	justify-content: space-between;
 	align-items:center;
-} #title h1, #title h3 {margin:15px;font-family:"Infinity";color: aqua}
+} #title h1, #title h3 {margin:40px;font-family:"Infinity";}
 
 h1 {
 	font-size : 60px;
 	font-family:"Infinity";
 	text-align:center;
+	margin:0;
+	padding:15px;
 }
 
 nav {
-	background: rgba(255, 255, 255, 0.4);
+	background: rgba(0, 0, 0, 0.4);
 	width:100%;
 	display:flex;
 	flex-wrap:wrap;
@@ -53,6 +58,7 @@ a:hover, button:hover{
 }
 
 .templateContainer {
+	background:white;
 	margin : auto;
 	margin-top:50px;
 	width: calc(90% - 40px);
@@ -216,15 +222,21 @@ textarea { width:80%; resize:vertical; outline:none; padding:10px;border-radius:
 	flex-wrap:wrap;
 	margin-top:42px;
 	padding:15px;
-}
+	justify-content:center;
+} UserContainer{ margin:auto; }
 
 .oImg {
 	width:250px;
 	height:250px;
-	background-position:cover;
+	margin:12px;
 	background-repeat:no-repeat;
 }	.oImg label {visibility:hidden;} .oImg:hover label {visibility:visible;}
 	.oImg button {width:250px;height:250px;background:transparent;border:none} .oImg form {width:250px;height:250px;} .oImg img {width:150px;}
+#oImgContainer {
+	display:flex;
+	flex-wrap:wrap;
+	justify-content:center;
+}
 
  /* BEGIN ADMIN CSS */
 
@@ -270,6 +282,27 @@ textarea { width:80%; resize:vertical; outline:none; padding:10px;border-radius:
 	font-family:"Infinity";
 	font-weight:bold;
 } .aUserName {padding:0;flex-basis:fit-content}
+.aUserMail {
+	font-size:35px;
+	border:none;
+	background:none;
+	outline:none;
+	font-family:"Infinity";
+	font-weight:bold;
+	padding:0;flex-basis:fit-content
+}
+.aUserPass {
+	width:50%;
+	min-width:300px;
+	font-size:35px;
+	border:none;
+	background:none;
+	outline:none;
+	margin:5px;
+	font-family:"Infinity";
+	font-weight:bold;
+	padding:0;flex-basis:fit-content
+}
 
 .aBtn {
 	display:flex;
@@ -311,7 +344,7 @@ a {text-decoration:none; color :inherit}
 	.author {}
 	.author img {width:55px; height:55px;}
 	.templateContainer {height:70vh; min-height:800px}
-	.webcam {width:100%;}
-	#set { width:100%; margin-top:15px; border-radius:15px; background:gray; };
+	.webcam {width:95%;}
+	#set { width:90%; margin-top:15px; border-radius:15px; background:gray; };
 	#users {  }
 }

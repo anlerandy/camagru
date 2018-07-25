@@ -6,6 +6,12 @@
 	<meta charset="utf-8" />
 </head>
 <?php
+	if (isset($_GET['disconnect']))
+	{
+		session_start();
+		session_destroy();
+		header('Location: /');
+	}
 	include_once 'database/libdb.php';
 	if (!($db = db_conn()))
 	{
@@ -21,13 +27,11 @@
 		include_once 'includes/galery.php';
 		include_once 'includes/users.php';
 		include_once 'includes/snap.php';
+	?>
+	<div style="margin:0;flex:1;padding-bottom:42px;padding-top:42px;background:rgba(255, 255, 255, 0.8);" >
+	<?php
 		if (empty($_GET))
 			printGalery(0);
-		else if (isset($_GET['disconnect']))
-		{
-			session_destroy();
-			header('Location: /');
-		}
 		else if (isset($_GET['snap']))
 			printSnap($user, $db);
 		else if (isset($_GET['users']))
@@ -49,5 +53,6 @@
 
 		</div>
 	</footer>
+	</div>
 </body>
 </html>
