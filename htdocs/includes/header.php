@@ -4,10 +4,21 @@
 	$user = NULL;
 	$u_err = 0;
 	$link = $_SERVER['REQUEST_URI'];
-	if (isset($_SESSION['login']))
+	if (isset($_SESSION) && isset($_SESSION['user_data']))
 	{
 		$user = new User();
-		$user->setUser();
+		if ($user->exist($_SESSION['login'], 0))
+		{
+			$user->setUser();
+		}
+		else
+		{
+			echo 'You are not connected. Error 850';
+			if (isset($_SESSION) && isset($_SESSION['user_data']))
+				session_destroy();
+			header("Refresh:2; url=/");
+			exit ();
+		}
 	}
 	else if (isset($_POST['login']) && isset($_POST['passwd']) && !empty($_POST['passwd']) && !empty($_POST['login']))
 	{
