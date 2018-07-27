@@ -66,6 +66,9 @@ function printOwnUser($u_login, $u_id) {
 		}
 		if (isset($_POST['update']))
 		{
+			if (!file_exists(__DIR__.'/../images/users')) {
+				mkdir(__DIR__.'/../images/users', 0777, true);
+			}
 			$path = '/images/users/'.$_POST['login'].'.jpg';
 			$imgDir = __DIR__.'/../images/users/'.$_POST['login'].'.jpg';
 			if (isset($_FILES) && !empty($_FILES) && !empty($_FILES['img']['name']))
