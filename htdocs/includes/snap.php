@@ -39,14 +39,16 @@ function printSnap($user, $db)
 	}
 	else
 	{
-		echo '
+?>
 		<h1>SnapThat</h1>
 		<div id="snapContainer">
 			<div class="webcam">
 				<video autoplay="true" id="videoElement">
 				</video>
+				<img id="image" style="display:none;" class="imgElement" />
 				<center>
 					<button onclick="shot()" id="shot">Take a shot!</button>
+					<input id="byFile" type='file' accept=".png, .jpg, .gif" onchange="readURL(this);"/>
 					<button onclick="retry()" id="retry" style="display:none;">Another</button>
 				</center>
 			</div>
@@ -67,7 +69,8 @@ function printSnap($user, $db)
 				</div>
 			</div>
 		</div>
-	<script src="../libs/webcam.js" type="text/javascript"></script>';
+	<script src="../libs/webcam.js" type="text/javascript"></script>
+<?php
 	}
 }
 ?>

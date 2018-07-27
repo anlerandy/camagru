@@ -10,7 +10,10 @@ function get_data($url) {
 	curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
 	$data = curl_exec($ch);
 	curl_close($ch);
-	return $data;
+	if (!empty($data))
+		return $data;
+	else
+		return NULL;
 }
 
 	if (isset($_SESSION) && isset($_SESSION['user_data']))
@@ -119,10 +122,10 @@ function get_data($url) {
 <div id="aUserContainer" >
 	<form enctype="multipart/form-data" method="POST" action="<?= $_SERVER['HTTP_REFERER']?>&login=<?=$u_info['login']?>" >
 		<div class="aUserprofil">
-			<input type="file" style="display:none;" name="img" id="upImg" />
+			<input type="file" accept=".png, .jpg, .gif" style="display:none;" name="img" id="upImg" />
 			<label for="upImg"><img src="<?=$u_info['image'] ?>" class="aImg"  /></label>
 			<h1><input size="10" type="text" name="login" class="aUserName" id="aUserName" value="<?= $u_info['login'] ?>" /></h1>
-			<label for="aUserName"><img width="50px" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Feedbin-Icon-home-edit.svg/2000px-Feedbin-Icon-home-edit.svg.png" /></label>
+			<label for="aUserName"><img width="50px" src="http://<?= $_SERVER['HTTP_HOST']?>/img/edit.png" /></label>
 		</div>
 			<h3 style="font-weight:500;"><a style="padding:5px;"><?= $u_info['login']?> has <?= $snaps ?> snaps</a></h3>
 		<div class="aUserField">
@@ -182,8 +185,9 @@ function get_data($url) {
 	{
 		echo "<h1> Log </h1>";
 		$tab = json_decode(get_data('https://api.github.com/repos/anlerandy/camagru/commits'), true);
-		foreach($tab as $comit)
-		{
+		if ($tab && !isset($tab['message']))
+			foreach($tab as $comit)
+			{
 ?>
 	<p>
 		<a target="_blank" href="<?= $comit['html_url'] ?>">
@@ -194,7 +198,7 @@ function get_data($url) {
 		</a>
 	</p>
 <?php
-		}
+			}
 	}
 ?>
 </div>

@@ -11,6 +11,8 @@ var another = document.getElementById("retry");
 var publish = document.getElementsByClassName("publish")[0];
 var filter = document.getElementsByClassName("filter")[0];
 var img = document.getElementById("img");
+var image = document.getElementById('image');
+var byFile = document.getElementById('byFile');
 
 if (navigator.mediaDevices.getUserMedia) {
 	navigator.mediaDevices.getUserMedia({video: true, audio: false})
@@ -20,6 +22,10 @@ if (navigator.mediaDevices.getUserMedia) {
 	.catch(function(err0r) {
 		console.log("Something went wrong!");
 		video.setAttribute('style', 'background:gray');
+		video.parentNode.removeChild(video);
+		snap.parentNode.removeChild(snap);
+		video = NULL;
+		snap = NULL;
 	});
 }
 
@@ -36,9 +42,42 @@ function shot() {
 		another.setAttribute("style", "display:block");
 		publish.setAttribute("style", "display:block");
 		filter.setAttribute("style", "display:none");
+		byFile.setAttribute("style", "display:none");
 		img.setAttribute("value", data);
 	} catch (e) {
 		console.log(e.message);
+	}
+}
+
+function printImg(e) {
+	image.setAttribute('src', e.target.result);
+	image.style.display = "block";
+	canvas.setAttribute("style", "display:block;border-radius:15px;");
+	canvas.width = image.offsetWidth;
+	canvas.height = image.offsetHeight;
+	context.drawImage(image, 0, 0, canvas.offsetWidth, canvas.offsetHeight );
+	container.insertBefore(canvas, image);
+	image.style.display = "none";
+
+	var data = canvas.toDataURL('image/png');
+	console.log(data);
+	if (data.length != 6)
+	{
+		byFile.setAttribute("style", "display:none");
+		video.setAttribute("style", "display:none");
+		snap.setAttribute("style", "display:none");
+		another.setAttribute("style", "display:block");
+		publish.setAttribute("style", "display:block");
+		filter.setAttribute("style", "display:none");
+		img.setAttribute("value", data);
+	}
+};
+
+function readURL(input) {
+	if (input.files && input.files[0]) {
+		var reader = new FileReader();
+		reader.onload = printImg;
+		reader.readAsDataURL(input.files[0]);
 	}
 }
 
@@ -49,4 +88,5 @@ function retry() {
 	canvas.setAttribute("style", "display:none");
 	publish.setAttribute("style", "display:none");
 	filter.setAttribute("style", "display:block");
+	byFile.setAttribute("style", "display:block");
 }

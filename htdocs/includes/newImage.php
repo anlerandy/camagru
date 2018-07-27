@@ -15,6 +15,8 @@
 	{
 		if (isset($_POST['img']) && !empty($_POST['img']))
 		{
+			if (strlen($_POST['img']) == 6)
+				header('location: ' . $_SERVER['HTTP_REFERER']);
 			$nbr = $img->nextImg($user->id) + 1;
 			$name = $nbr . hash('crc32b', $user->login);
 			$data = $_POST['img'];

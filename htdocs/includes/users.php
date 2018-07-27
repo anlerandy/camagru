@@ -3,7 +3,7 @@
 function printUsers() {
 	$u_pageInst = new User();
 	$allUser = $u_pageInst->getAll();
-	echo '<div id="users">';
+	echo '<h1>Users</h1><div id="users">';
 	foreach ($allUser as $uId)
 	{
 		if (!file_exists(__DIR__ . '/../' . $uId['image']))
@@ -24,7 +24,7 @@ function printUsers() {
 function printAdmUsers() {
 	$u_pageInst = new User();
 	$allUser = $u_pageInst->getAll();
-	echo '<div id="users">';
+	echo '<h1>Users</h1><div id="users">';
 	foreach ($allUser as $uId)
 	{
 		if (!file_exists(__DIR__ . '/../' . $uId['image']))
@@ -150,7 +150,7 @@ function printOwnUser($u_login, $u_id) {
 	<form enctype="multipart/form-data" method="POST" action="/?profil" >
 		<div class="Userprofil">
 			<div>
-				<input type="file" style="display:none;" name="img" id="upImg" />
+				<input type="file" accept=".png, .jpg, .gif" style="display:none;" name="img" id="upImg" />
 				<label for="upImg"><img src="<?=$u_info['image'] ?>" class="aImg"  /></label>
 			</div>
 			<div style="flex-basis:80%;padding:15px" >

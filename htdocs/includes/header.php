@@ -68,9 +68,9 @@
 	<div id="signup"
 	<?php
 	if ((!isset($_POST['submit']) || $_POST['submit'] !== 'signup') && (!isset($_POST['signin'])))
-		echo 'style="opacity: 0; display: none;'
+		echo 'style="opacity: 0; display: none;"'
 	?>
-	">
+	>
 	<div class="bg" onclick="openSignup()"></div>
 	<form enctype="multipart/form-data" method="POST" action="/includes/signup.php" >
 		<h1>SignUp</h1>
@@ -81,7 +81,7 @@
 		Username : <input autocomplete='username' type="text" id="bform.signup" name="login" placeholder="Your login" required />
 		Password : <input autocomplete='current-password' type="password" name="passwd" placeholder="Your password" required />
 		E-Mail : <input type="text" autocomplete='email' name="mail" placeholder="Your mail adress" required />
-		Avatar : <input type="file" name="img" />
+		Avatar : <input type="file" accept=".png, .jpg, .gif" name="img" />
 		<button name="submit" value="signup">SignUp</button>
 	</form>
 	</div>
