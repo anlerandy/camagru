@@ -94,13 +94,20 @@ a:hover, button:hover{
 	flex-direction:column;
 	justify-content:center;
 	margin-bottom:30px;
-}	.author img {width:75px; height:75px;border-radius:50%;object-fit: cover;box-shadow:3px 3px 2px black;margin-bottom:10px;margin-right:10px;}
+}	.author img {width:75px; height:75px;border-radius:50%;object-fit: cover;box-shadow:3px 3px 2px black;margin-bottom:5px;margin-right:10px;}
 	.author p {height: 40%;overflow:hidden;} .author p:hover {overflow:auto;}
 
 .comContainer {
-	height: 40%;
+	height: 35%;
 	overflow:hidden;
 } .comContainer:hover {overflow:auto;}
+
+.comform textarea {
+	height:37px;
+	margin:0;
+	padding;0;
+	border:1px solid grey;
+}
 
 .comAuthor {
 	display:flex;
