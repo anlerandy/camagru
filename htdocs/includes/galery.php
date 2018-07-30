@@ -104,6 +104,7 @@ function printAllOwnGalery() {
 	$gal = new Galery();
 	$user = new User();
 	$u_all = $user->getAll();
+	$i = 0;
 
 ?>
 	<h1>All snaps</h1>
@@ -114,6 +115,7 @@ function printAllOwnGalery() {
 		$display = $gal->newUserGal($u_info['login']);
 		if (!empty($display))
 		{
+			$i = $i + 1;
 ?>
 				<?php foreach($display as $img) { ?>
 				<div class="oImg" style="background: url('<?=$img['path']?>');background-size:cover" >
@@ -125,9 +127,11 @@ function printAllOwnGalery() {
 			<?php } ?>
 <?php
 		}
-		else
+	}
+	if ($i <= 0)
+	{
 ?>
-			<h2>No snaps yet...</h2>
+		<h2>No snaps yet..</h2>
 <?php
 	}
 ?>
