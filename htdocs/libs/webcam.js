@@ -20,7 +20,7 @@ if (navigator.mediaDevices.getUserMedia) {
 			video.srcObject = stream;
 		})
 	.catch(function(err0r) {
-		console.log("Something went wrong!");
+		console.log("No Cam device found.");
 		video.setAttribute('style', 'background:gray');
 		video.parentNode.removeChild(video);
 		snap.parentNode.removeChild(snap);
@@ -49,9 +49,7 @@ function shot() {
 	}
 }
 
-function printImg(e) {
-	image.setAttribute('src', e.target.result);
-	image.style.display = "block";
+function printImg() {
 	canvas.setAttribute("style", "display:block;border-radius:15px;");
 	canvas.width = image.offsetWidth;
 	canvas.height = image.offsetHeight;
@@ -60,7 +58,6 @@ function printImg(e) {
 	image.style.display = "none";
 
 	var data = canvas.toDataURL('image/png');
-	console.log(data);
 	if (data.length != 6)
 	{
 		byFile.setAttribute("style", "display:none");
@@ -76,7 +73,12 @@ function printImg(e) {
 function readURL(input) {
 	if (input.files && input.files[0]) {
 		var reader = new FileReader();
-		reader.onload = printImg;
+		reader.onload = function (e)
+			{
+				image.setAttribute('src', e.target.result);
+				image.onload = printImg;
+				image.style.display = "block";
+			}
 		reader.readAsDataURL(input.files[0]);
 	}
 }
