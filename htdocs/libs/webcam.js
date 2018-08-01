@@ -10,14 +10,17 @@ var snap = document.getElementById("shot");
 var another = document.getElementById("retry");
 var publish = document.getElementsByClassName("publish")[0];
 var filter = document.getElementsByClassName("filter")[0];
+var imgFilt = document.getElementsByClassName("imgFilter")[0];
 var img = document.getElementById("img");
 var image = document.getElementById('image');
 var byFile = document.getElementById('byFile');
+var uno = 1;
 
 if (navigator.mediaDevices.getUserMedia) {
 	navigator.mediaDevices.getUserMedia({video: true, audio: false})
 		.then(function(stream) {
 			video.srcObject = stream;
+			imgFilt.stylei.display = "block";
 		})
 	.catch(function(err0r) {
 		console.log("No Cam device found.");
@@ -50,6 +53,7 @@ function shot() {
 }
 
 function printImg() {
+//	imgFilt.style.display = "block";
 	canvas.setAttribute("style", "display:block;border-radius:15px;");
 	canvas.width = image.offsetWidth;
 	canvas.height = image.offsetHeight;
@@ -77,6 +81,8 @@ function readURL(input) {
 			{
 				image.setAttribute('src', e.target.result);
 				image.onload = printImg;
+				if (uno++ == 1)
+					printImg();
 				image.style.display = "block";
 			}
 		reader.readAsDataURL(input.files[0]);
@@ -91,4 +97,8 @@ function retry() {
 	publish.setAttribute("style", "display:none");
 	filter.setAttribute("style", "display:block");
 	byFile.setAttribute("style", "display:block");
+/*	if (video.srcObject == stream)
+		imgFilt.style.display = "block";
+	else
+		imgFilt.style.display = "none";*/
 }

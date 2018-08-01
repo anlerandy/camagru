@@ -67,7 +67,7 @@ function printGalery($id) {
 	else if ($user->exist($id, 0))
 		echo '<h1>' . $id . '\'s galery is empty!</h1>';
 	else
-		echo "404 NOT FOUND";
+		echo "<h1>No snaps yet...<center><br/><a href=\"/?snap\" >Be the first to post a snap!</a></center></h1>";
 }
 
 function printOwnGalery($u_login) {

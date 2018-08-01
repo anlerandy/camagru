@@ -18,7 +18,7 @@ function get_data($url) {
 
 	if (isset($_SESSION) && isset($_SESSION['user_data']))
 	{
-		if ($_SESSION['user_data']['level'] == 3)
+		if ($_SESSION['user_data']['level'] >= 3)
 		{
 			$user = new User();
 		}

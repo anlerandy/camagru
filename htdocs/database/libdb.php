@@ -17,6 +17,8 @@ function db_conn()
 	{
 		try {
 			include $_SERVER['DOCUMENT_ROOT'] . "/database/config.php";
+			if (!isset($r_server) || !isset($r_user) || !isset($r_db) || !isset($r_passwd))
+				return (0);
 			$db = new PDO("mysql:host=$r_server;dbname=$r_db;charset=utf8mb4", $r_user, $r_passwd);
 			$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		}

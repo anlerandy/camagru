@@ -184,7 +184,7 @@ function printOwnUser($u_login, $u_id) {
 				</div>
 					<div class="aBtn">
 						<input type="submit" name="update" value="update" />
-						<a onclick="openDelete()">Delete my account</a>
+						<?php if ($_SESSION['user_data']['id'] != 1) { ?> <a onclick="openDelete()">Delete my account</a> <?php } ?>
 					</div>
 				</div>
 			</div>
