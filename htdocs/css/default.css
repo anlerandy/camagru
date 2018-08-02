@@ -251,6 +251,12 @@ textarea { width:80%; resize:vertical; outline:none; padding:10px;border-radius:
 	justify-content:center;
 }
 
+.filtField input {display:none}
+.filtField input:checked+label {background:tan}
+.filtField {display:flex;width:80%;margin:auto;justify-content:space-between;}
+.labeled img {width:100px;}
+.labeled {display:flex; flex-direction:column;justify-content:center;align-items:center;}
+
  /* BEGIN ADMIN CSS */
 
 #adminPanel

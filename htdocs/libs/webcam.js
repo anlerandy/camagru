@@ -10,16 +10,18 @@ var snap = document.getElementById("shot");
 var another = document.getElementById("retry");
 var publish = document.getElementsByClassName("publish")[0];
 var filter = document.getElementsByClassName("filter")[0];
-var imgFilt = document.getElementsByClassName("imgFilter")[0];
+var imgFilt = document.getElementById("preview");
 var img = document.getElementById("img");
 var image = document.getElementById('image');
 var byFile = document.getElementById('byFile');
 var uno = 1;
+var onAir = 0;
 
 if (navigator.mediaDevices.getUserMedia) {
 	navigator.mediaDevices.getUserMedia({video: true, audio: false})
 		.then(function(stream) {
 			video.srcObject = stream;
+			onAir = 1;
 			imgFilt.stylei.display = "block";
 		})
 	.catch(function(err0r) {
@@ -53,7 +55,22 @@ function shot() {
 }
 
 function printImg() {
-//	imgFilt.style.display = "block";
+	imgFilt.style.display = "block";
+	imgFilt.style.position = "absolute";
+	imgFilt.setAttribute("style", "display:block;position:absolute;background-size:cover;");
+	var filt = document.querySelector('input[name="filt"]:checked').value;
+	if (filt == 1)
+		imgFilt.style.background = "url('/img/filter/01.png') no-repeat center center";
+	else if (filt == 2)
+		imgFilt.style.background = "url('/img/filter/02.png') no-repeat center center";
+	else if (filt == 3)
+		imgFilt.style.background = "url('/img/filter/03.png') no-repeat center center";
+	else if (filt == 4)
+		imgFilt.style.background = "url('/img/filter/04.png') no-repeat center center";
+	else
+		console.log("NotAbleToChangeBg");
+	imgFilt.style.width = image.offsetWidth;
+	imgFilt.style.height = image.offsetHeight;
 	canvas.setAttribute("style", "display:block;border-radius:15px;");
 	canvas.width = image.offsetWidth;
 	canvas.height = image.offsetHeight;
@@ -97,8 +114,8 @@ function retry() {
 	publish.setAttribute("style", "display:none");
 	filter.setAttribute("style", "display:block");
 	byFile.setAttribute("style", "display:block");
-/*	if (video.srcObject == stream)
+	if (onAir == 1)
 		imgFilt.style.display = "block";
 	else
-		imgFilt.style.display = "none";*/
+		imgFilt.style.display = "none";
 }

@@ -45,6 +45,8 @@ function printSnap($user, $db)
 			<div class="webcam">
 				<video autoplay="true" id="videoElement">
 				</video>
+				<!--<img src="https://www.freeiconspng.com/uploads/download-rain-high-quality-png-11.png" style="position:absolute;display:none;" id="preview" class="imgFilt" /> -->
+				<div style="position:absolute;display:none;" id="preview" class="imgFilt"></div>
 				<img id="image" style="display:none;" class="imgElement" />
 				<center>
 					<button onclick="shot()" id="shot">Take a shot!</button>
@@ -58,7 +60,7 @@ function printSnap($user, $db)
 					<form method="POST" action="/includes/newImage.php">
 						<input id="img" name="img" type="hidden" />
 						<center>
-						<textarea type="text" name="desc"></textarea>
+						<textarea type="text" name="desc" placeholder="Title or description here." ></textarea>
 						<div>
 							<button type="submit">Publish</button>
 						</div>
@@ -66,6 +68,19 @@ function printSnap($user, $db)
 					<form>
 				</div>
 				<div class="filter">
+					<form>
+						<fieldset class="filtField">
+						<legend>Choose your filter :</legend>
+							<input type="radio" name="filt" value="1" id="rain" checked/>
+							<label for="rain" class="labeled"><img src="/img/filter/01.png" />Rain</label>
+							<input type="radio" name="filt" value="2" id="drop" />
+							<label for="drop" class="labeled"><img src="/img/filter/02.png" />Drop</label>
+							<input type="radio" name="filt" value="3" id="glitter" />
+							<label for="glitter" class="labeled"><img src="/img/filter/03.png" />Glitter</label>
+							<input type="radio" name="filt" value="4" id="broke" />
+							<label for="broke" class="labeled"><img src="/img/filter/04.png" />Broke</label>
+						</fieldset>
+					</form>
 				</div>
 			</div>
 		</div>
