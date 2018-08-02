@@ -16,25 +16,54 @@ var image = document.getElementById('image');
 var byFile = document.getElementById('byFile');
 var uno = 1;
 var onAir = 0;
+var onImg = 0;
 
 if (navigator.mediaDevices.getUserMedia) {
 	navigator.mediaDevices.getUserMedia({video: true, audio: false})
 		.then(function(stream) {
 			video.srcObject = stream;
 			onAir = 1;
-			imgFilt.stylei.display = "block";
+			imgFilt.style.display = "block";
+			imgFilt.style.position = "absolute";
+			imgFilt.setAttribute("style", "display:block;position:absolute;background-size:cover;");
+			changeBg();
 		})
 	.catch(function(err0r) {
-		console.log("No Cam device found.");
+		console.log("No Cam device found.", err0r);
 		video.setAttribute('style', 'background:gray');
 		video.parentNode.removeChild(video);
 		snap.parentNode.removeChild(snap);
-		video = NULL;
-		snap = NULL;
 	});
 }
 
+function changeBg() {
+	imgFilt.style.width = video.offsetWidth;
+	imgFilt.style.height = video.offsetHeight;
+	var filt = document.querySelector('input[name="filt"]:checked').value;
+	if (filt == 1)
+		imgFilt.style.background = "url('/img/filter/01.png') no-repeat center center";
+	else if (filt == 2)
+		imgFilt.style.background = "url('/img/filter/02.png') no-repeat center center";
+	else if (filt == 3)
+		imgFilt.style.background = "url('/img/filter/03.png') no-repeat center center";
+	else if (filt == 4)
+		imgFilt.style.background = "url('/img/filter/04.png') no-repeat center center";
+	else
+		console.log("NotAbleToChangeBg");
+	if (onImg == 1)
+	{
+		imgFilt.style.width = canvas.offsetWidth;
+		imgFilt.style.height = canvas.offsetHeight;
+	}
+	else
+	{
+		imgFilt.style.width = video.offsetWidth;
+		imgFilt.style.height = video.offsetHeight;
+	}
+}
+
 function shot() {
+	onImg = 0;
 	canvas.setAttribute("style", "display:block;border-radius:15px;");
 	canvas.width = video.offsetWidth;
 	canvas.height = video.offsetHeight;
@@ -55,22 +84,10 @@ function shot() {
 }
 
 function printImg() {
+	onImg = 1;
 	imgFilt.style.display = "block";
 	imgFilt.style.position = "absolute";
 	imgFilt.setAttribute("style", "display:block;position:absolute;background-size:cover;");
-	var filt = document.querySelector('input[name="filt"]:checked').value;
-	if (filt == 1)
-		imgFilt.style.background = "url('/img/filter/01.png') no-repeat center center";
-	else if (filt == 2)
-		imgFilt.style.background = "url('/img/filter/02.png') no-repeat center center";
-	else if (filt == 3)
-		imgFilt.style.background = "url('/img/filter/03.png') no-repeat center center";
-	else if (filt == 4)
-		imgFilt.style.background = "url('/img/filter/04.png') no-repeat center center";
-	else
-		console.log("NotAbleToChangeBg");
-	imgFilt.style.width = image.offsetWidth;
-	imgFilt.style.height = image.offsetHeight;
 	canvas.setAttribute("style", "display:block;border-radius:15px;");
 	canvas.width = image.offsetWidth;
 	canvas.height = image.offsetHeight;
@@ -86,9 +103,10 @@ function printImg() {
 		snap.setAttribute("style", "display:none");
 		another.setAttribute("style", "display:block");
 		publish.setAttribute("style", "display:block");
-		filter.setAttribute("style", "display:none");
+//		filter.setAttribute("style", "display:none");
 		img.setAttribute("value", data);
 	}
+	changeBg();
 };
 
 function readURL(input) {
@@ -107,6 +125,7 @@ function readURL(input) {
 }
 
 function retry() {
+	onImg = 0;
 	video.setAttribute("style", "display:block");
 	snap.setAttribute("style", "display:block");
 	another.setAttribute("style", "display:none");
@@ -118,4 +137,5 @@ function retry() {
 		imgFilt.style.display = "block";
 	else
 		imgFilt.style.display = "none";
+	changeBg();
 }
