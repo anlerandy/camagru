@@ -43,10 +43,11 @@ function printSnap($user, $db)
 		<h1>SnapThat</h1>
 		<div id="snapContainer">
 			<div class="webcam">
-				<div style="position:absolute;display:none;" id="preview" class="imgFilt"></div>
+				<img style="display:none;" id="preview" class="imgFilt" />
 				<video autoplay="true" id="videoElement">
 				</video>
 				<img id="image" style="display:none;" class="imgElement" />
+				<img id="tmp" style="display:none;" class="imgTmp" />
 				<center>
 					<button onclick="shot()" id="shot">Take a shot!</button>
 					<input id="byFile" type='file' accept=".png, .jpg, .gif" onchange="readURL(this);"/>
